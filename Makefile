@@ -1,16 +1,37 @@
-all	: do_configure
+NAME	=	so_long
+CC		= 	clang
+CFLAGS	= 	-Wall -Werror -Wextra
+MLX		= 	libmlx_Darwin.a
+SRCS_PATH	=	./srcs
+MLX_PATH	=	./mlx
+GNL_PATH	=	./gnl
 
-do_configure	:
-	./configure
+SRCS_FILES	=	$(shell find ./srcs -type f -name "*.c")
+GNL_FILES	=	$(shell find ./gnl -type f -name "*.c")
+MLXFLAG		= 	-lmx -framework OpenGL -framework AppKit
+SRCS		=	$(SRCS_FILES)
+SRCS_OBJS	=	$(SRCS:.c=.o)
+GNL			=	$(GNL_FILES)
+GNL_OBJS	=	$(GNL:.c=.o)
+MLXMAKE		=	$(MAKE) -C $(MLX_PATH)
+
+all	:	$(NAME)
+
+$(NAME)	:	$(SRCS_OBJS) $(GNL_OBJS)
+	$(CC) $(CFLAGS) $(SRCS_OBJS) $(GNL_OBJS) $(MLXFLAG) $(SRCS_FILES) -I../ $(GNL_FILES) -o $(NAME)
+
+mlx	:
+	$(MLXMAKE)
 
 clean	:
-	./configure clean
+	$(MAKE) clean -C $(MLX_PATH)
+	$(RM) $(SRCS_OBJS)
+	$(RM) $(GNL_OBJS)
 
-re	: clean all 
+fclean	:	clean
+	$(RM) $(MLX_PATH)/libmlx_Darwin.a
+	$(RM) $(NAME)
 
-compile	: 
-	gcc -lmlx -framework OpenGL -framework AppKit main.c \
-	get_map.c map_err.c map_check.c render.c window.c \
-	move_vertical.c move_horizontal.c get_next_line.c \
-	get_next_line_utils.c solong_utils.c \
-	keycode.c
+re	:	fclean all
+
+.PHONY	:	all clean fclean mlx re
