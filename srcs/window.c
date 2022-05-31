@@ -6,7 +6,7 @@
 /*   By: msato <msato@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 18:35:52 by msato             #+#    #+#             */
-/*   Updated: 2022/05/30 20:02:24 by msato            ###   ########.fr       */
+/*   Updated: 2022/05/31 15:04:43 by msato            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	put_background_window(t_vars vars)
 		{
 			img = mlx_xpm_file_to_image(vars.mlx, \
 				"./image/back.xpm", image_wid, image_hig);
-			if(!img)
+			if (!img)
 				image_err();
 			mlx_put_image_to_window(vars.mlx, vars.mlx_win, \
 				img, 75 * i, 75 * j);

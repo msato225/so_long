@@ -6,7 +6,7 @@
 /*   By: msato <msato@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 19:42:44 by msato             #+#    #+#             */
-/*   Updated: 2022/05/30 20:01:30 by msato            ###   ########.fr       */
+/*   Updated: 2022/05/31 14:47:40 by msato            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 # define	SOLONG_H
 
-# include "../mlx/mlx.h"
-# include "../gnl/get_next_line.h"
+# include "mlx/mlx.h"
+# include "gnl/get_next_line.h"
 # include <math.h>
 
 typedef struct s_vars

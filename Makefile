@@ -1,6 +1,6 @@
 NAME	=	so_long
 CC		= 	clang
-CFLAGS	= 	-Wall -Werror -Wextra
+CFLAGS	= 	-Wall -Werror -Wextra -I.
 MLX		= 	libmlx_Darwin.a
 SRCS_PATH	=	./srcs
 MLX_PATH	=	./mlx
@@ -8,7 +8,7 @@ GNL_PATH	=	./gnl
 
 SRCS_FILES	=	$(shell find ./srcs -type f -name "*.c")
 GNL_FILES	=	$(shell find ./gnl -type f -name "*.c")
-MLXFLAG		= 	-lmx -framework OpenGL -framework AppKit
+MLXFLAG		= 	-lmlx -framework OpenGL -framework AppKit
 SRCS		=	$(SRCS_FILES)
 SRCS_OBJS	=	$(SRCS:.c=.o)
 GNL			=	$(GNL_FILES)
@@ -18,7 +18,7 @@ MLXMAKE		=	$(MAKE) -C $(MLX_PATH)
 all	:	$(NAME)
 
 $(NAME)	:	$(SRCS_OBJS) $(GNL_OBJS)
-	$(CC) $(CFLAGS) $(SRCS_OBJS) $(GNL_OBJS) $(MLXFLAG) $(SRCS_FILES) -I../ $(GNL_FILES) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS_OBJS) $(GNL_OBJS) $(MLXFLAG) -o $(NAME)
 
 mlx	:
 	$(MLXMAKE)
